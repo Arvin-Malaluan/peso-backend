@@ -8,21 +8,16 @@ from datetime import datetime
 
 class AllProfile(models.Model):
     account = models.IntegerField(primary_key=True, blank=True)
-    fk = models.ForeignKey(
-        Account, on_delete=models.CASCADE, blank=True, null=True, related_name='allprofile')
+    fk = models.ForeignKey(Account, on_delete=models.CASCADE, blank=True, null=True, related_name='allprofile')
     name = models.CharField(max_length=255, null=True, blank=True)
     photo = models.ImageField(null=True, blank=True, upload_to='images/')
     bio = models.CharField(max_length=255, null=True, blank=True)
     social_links = models.CharField(max_length=255, null=True, blank=True)
     location = models.CharField(max_length=255, null=True, blank=True)
     portfolio_link = models.CharField(max_length=255, null=True, blank=True)
-    educational_attainment = models.CharField(
-        max_length=255, null=True, blank=True)
-
-    emp_count = models.IntegerField(
-        null=True, blank=True, default=0)
-    subsidiaries_count = models.IntegerField(
-        null=True, blank=True, default=0)
+    educational_attainment = models.CharField(max_length=255, null=True, blank=True)
+    emp_count = models.IntegerField(null=True, blank=True, default=0)
+    subsidiaries_count = models.IntegerField(null=True, blank=True, default=0)
     comp_overview = models.CharField(max_length=255, null=True, blank=True)
     site_link = models.CharField(max_length=255, null=True, blank=True)
     gender = models.CharField(max_length=255, null=True, blank=True)
