@@ -4,6 +4,7 @@ from userFolder.models import Account
 from github import Github
 import base64
 from datetime import datetime
+from decouple import config
 
 
 class AllProfile(models.Model):
@@ -31,8 +32,8 @@ class AllProfile(models.Model):
         image = str(self.photo)
         super().save(*args, **kwargs)
 
-        g = Github("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")
-        repo = g.get_user().get_repo("github-as-static-assets-repository")
+        g = Github(config('GITHUB_TOKEN'))
+        repo = g.get_user().get_repo(config('GITHUB_REPO'))
 
         if image and not image.startswith('images'):
 
@@ -82,8 +83,8 @@ class Post(models.Model):
 
             try:
                 # Upload image to GitHub repo
-                g = Github("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")
-                repo = g.get_user().get_repo("github-as-static-assets-repository")
+                g = Github(config('GITHUB_TOKEN'))
+                repo = g.get_user().get_repo(config('GITHUB_REPO'))
                 repo.create_file(new_file_name, "uploading a community post image", content)
                 # Set the image field to the new file name
                 self.image.name = new_file_name

@@ -1,9 +1,9 @@
 from django.db import models
 from userFolder.models import Account
 from recruiter.models import JobPost
-
 from github import Github
 from datetime import datetime
+from decouple import config
 
 
 class GetDocuments(models.Model):
@@ -18,8 +18,8 @@ class GetDocuments(models.Model):
         super().save(*args, **kwargs)
 
         # Initialize GitHub outside of the loop
-        g = Github("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")
-        repo = g.get_user().get_repo("github-as-static-assets-repository")
+        g = Github(config('GITHUB_TOKEN'))
+        repo = g.get_user().get_repo(config('GITHUB_REPO'))
 
         # List of fields to process
         fields_to_process = ['resume', 'tor', 'nbi', 'psa']

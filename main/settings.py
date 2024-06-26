@@ -1,14 +1,14 @@
 import os
 import dj_database_url
 from pathlib import Path
+from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure-%d+%9v9d3gwsb8h-oz!v-x3osr!b3h3-74xb_sse-oe6a2j*wj'
+SECRET_KEY = config('SECRET_KEY')
 DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = ['*']
-CORS_ALLOWED_ORIGINS = ['*']
-CORS_ALLOW_ALL_ORIGINS = True
+ALLOWED_HOSTS = ['https://peso-lipa.online']
+CORS_ALLOWED_ORIGINS = ['https://peso-lipa.online']
 
 INSTALLED_APPS = [
     "daphne",
